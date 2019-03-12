@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeroService } from '../hero.service';
 import {Hero} from './Hero';
 
 @Component({
@@ -9,18 +10,23 @@ import {Hero} from './Hero';
 
 
 export class HeroesComponent implements OnInit {
-  hero: Hero = {
-    id: 1,
-    name: 'Windstorm'
-  };
+  heroes: Hero[];
+  selected: Hero;
+  service: HeroService;
 
-  constructor() {
 
+  constructor(service: HeroService) {
+    this.service = service;
   }
 
 
 
   ngOnInit() {
+    this.service.getHeroes().subscribe(heroes => this.heroes = heroes);;
+  }
+
+  onClick(hero: Hero) {
+    this.selected = hero;
   }
 
 }
