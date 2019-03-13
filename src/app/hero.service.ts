@@ -16,4 +16,10 @@ export class HeroService {
     return of(HEROES);
   }
 
+  getHero(id): Observable<Hero> {
+    const a = HEROES.find( hero => hero.id === parseInt(id, 10));
+    console.log(a.name);
+    return of(a);
+  }
+
 }
